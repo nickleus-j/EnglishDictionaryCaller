@@ -5,7 +5,7 @@ var DictionarySite = {
         let baseUrl = 'https://api.dictionaryapi.dev/api/v2/entries/en/' + searchedWord;
         DictionarySite.WebCaller.get(baseUrl,  function (result) {
             if (result == undefined || result == null || result.title || !result[0]) {
-                DomExtension.ShowModal("No Meaning Found", "Error ");
+                DictionarySite.reactOnError(searchedWord);
             }
             if (result[0].word) {
                 let resultUi = document.querySelector(resultSelector);
@@ -18,7 +18,8 @@ var DictionarySite = {
 
 
         }, function (e) {
-            DomExtension.ShowModal("Error in contacting Server", "Try again later " + e);
+            //DomExtension.ShowModal("Error in contacting Server", "Try again later " + e);
+            
         });
     },
     makeWordUi: (listElem,resultingItem) => {
@@ -51,5 +52,31 @@ var DictionarySite = {
             
         }
         
+    },
+    reactOnError: (word)=> {
+        let webCaller = DictionarySite.WebCaller;
+        webCaller.get('?handler=Suggestion&word=' + word
+            , function (result) {
+                let h5 = document.createElement("h5"), suggestionsElem = document.querySelector(".suggestions");
+                let ul = document.createElement("ul");
+                h5.innerText = "suggestions";
+                suggestionsElem.innerHTML = "";
+                suggestionsElem.append(h5);
+                DictionarySite.createSuggestionList(ul,result);
+                suggestionsElem.append(ul);
+            },
+            function (data) {
+                alert(data);
+                let suggestionsElem = document.querySelector(".suggestions");
+                suggestionsElem.innerHTML = "";
+            }
+        );
+    },
+    createSuggestionList: (listElem,words)=>{
+        for (let i = 0; i < words.length; i++) {
+            let item = document.createElement("li");
+            item.innerText = words[i];
+            listElem.append(item);
+        }
     }
 }

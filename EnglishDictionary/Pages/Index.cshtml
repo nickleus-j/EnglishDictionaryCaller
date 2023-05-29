@@ -12,9 +12,11 @@
     </h2>
    
 </div>
-<article>
+<div class="row">
+    <div class="suggestions col-sm-2"></div>
+    <article class="col-sm-10"></article>
+</div>
 
-</article>
 @section Scripts{
     <script>
         window.addEventListener("load", (event) => {
@@ -34,6 +36,24 @@
                     btnSearch.click();
                 }
             });
+            function Xsuggest(word) {
+                let webCaller= new WebCaller();
+                webCaller.get('?handler=Suggestion&word=' + word
+                    , function (result) {
+                        let h5 = document.createElement("h5"), suggestionsElem = document.querySelector(".suggestions");
+                        let p = document.createElement("p");
+                        h5.innerText="suggestions";
+                        suggestionsElem.innerHTML="";
+                        suggestionsElem.append(h5);
+                        p.innerText=result;
+                        suggestionsElem.append(p);
+                    },
+                    function (data) {
+                        alert(data);
+                        let suggestionsElem = document.querySelector(".suggestions");
+                        suggestionsElem.innerHTML = "";
+                    });
+            }
         });
     </script>
 }
