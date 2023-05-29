@@ -1,0 +1,26 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Enter a word</h1>
+    <input id="wordBox" placeholder="definition look up" />
+    <a id="searchBtn" class="btn btn-primary">Search</a>
+</div>
+<article>
+
+</article>
+@section Scripts{
+    <script>
+        window.addEventListener("load", (event) => {
+            
+            //document.querySelector(".projection-tbl").classList.add("d-none");
+            var btnSearch = document.querySelector("#searchBtn");
+            btnSearch.addEventListener('click', function () {
+                DictionarySite.getMeaning(document.querySelector("#wordBox").value, "article");
+            });
+        });
+    </script>
+}

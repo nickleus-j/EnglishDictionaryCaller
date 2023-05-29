@@ -1,0 +1,56 @@
+﻿var Options = (function () {
+    function Options(url, method, data) {
+        this.url = url;
+        this.method = method || "get";
+        this.data = data || {};
+    }
+    return Options;
+}());
+var WebCaller = (function () {
+    function WebCaller() {
+        var _this = this;
+        this.request = function (options, successCallback, errorCallback) {
+            var that = _this;
+            var args = options.method === "get" || options.method === "delete" ? {
+                method: options.method,
+                headers: { "Content-Type": "application/json; charset=utf-8" }
+            } : {
+                method: options.method,
+                headers: { "Content-Type": "application/json; charset=utf-8" },
+                body: JSON.stringify(options.data)
+            };
+            fetch(options.url, args)
+                .then(function (res) {
+                    if (res.ok) {
+                        return res.json();
+                    }
+                    return errorCallback(res.json());
+                }) // parse response as JSON (can be res.text() for plain response)
+                .then(function (response) {
+                    successCallback(response);
+                })
+                .catch(function (err) {
+                    errorCallback(err);
+                });
+        };
+        this.get = function (url, successCallback, errorCallback) {
+            _this.request(new Options(url), successCallback, errorCallback);
+        };
+        this.getWithDataInput = function (url, data, successCallback, errorCallback) {
+            _this.request(new Options(url, "get", data), successCallback, errorCallback);
+        };
+        this.post = function (url, successCallback, errorCallback) {
+            _this.request(new Options(url, "post"), successCallback, errorCallback);
+        };
+        this.postWithData = function (url, data, successCallback, errorCallback) {
+            _this.request(new Options(url, "post", data), successCallback, errorCallback);
+        };
+        this.putWithData = function (url, data, successCallback, errorCallback) {
+            _this.request(new Options(url, "put", data), successCallback, errorCallback);
+        };
+        this.delete = function (url, data, successCallback, errorCallback) {
+            _this.request(new Options(url, "delete", data), successCallback, errorCallback);
+        };
+    }
+    return WebCaller;
+}());
