@@ -1,13 +1,16 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Look for definitions";
 }
 
 <div class="text-center">
     <h1 class="display-4">Enter a word</h1>
-    <input id="wordBox" placeholder="definition look up" />
-    <a id="searchBtn" class="btn btn-primary">Search</a>
+    <h2>
+        <input id="wordBox" placeholder="definition look up" />
+        <a id="searchBtn" class="btn btn-primary">Search</a>
+    </h2>
+   
 </div>
 <article>
 
@@ -18,8 +21,18 @@
             
             //document.querySelector(".projection-tbl").classList.add("d-none");
             var btnSearch = document.querySelector("#searchBtn");
+            let searchBox = document.querySelector("#wordBox");
             btnSearch.addEventListener('click', function () {
-                DictionarySite.getMeaning(document.querySelector("#wordBox").value, "article");
+                DictionarySite.getMeaning(searchBox.value, "article");
+            });
+            searchBox.addEventListener("keypress", function (event) {
+                // If the user presses the "Enter" key on the keyboard
+                if (event.key === "Enter") {
+                    // Cancel the default action, if needed
+                    event.preventDefault();
+                    // Trigger the button element with a click
+                    btnSearch.click();
+                }
             });
         });
     </script>

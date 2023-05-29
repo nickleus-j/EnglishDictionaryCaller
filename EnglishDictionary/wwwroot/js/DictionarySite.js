@@ -22,8 +22,9 @@ var DictionarySite = {
         });
     },
     makeWordUi: (listElem,resultingItem) => {
-        let dt = document.createElement("dt"), dd= document.createElement("dd");
-        dt.innerText = resultingItem.word;
+        let dt = document.createElement("dt"), h4 = document.createElement("h4"), dd= document.createElement("dd");
+        h4.innerText = resultingItem.word;
+        dt.append(h4);
         listElem.append(dt);
         DictionarySite.writeMeanings(resultingItem.meanings, dd);
         listElem.append(dd);
@@ -33,7 +34,7 @@ var DictionarySite = {
             for (let i = 0; i < meanings.length; i++) {
                 let currentMeaning = meanings[i];
                 let h5 = document.createElement("h5");//meanings
-                h5.innerText = (i + 1) + "] Part Of Speech: " + currentMeaning.partOfSpeech;
+                h5.innerText = "["+(i + 1) + "] Part Of Speech: " + currentMeaning.partOfSpeech;
                 uiElem.append(h5);
                 if (currentMeaning.definitions) {
                     let p = document.createElement("p");
