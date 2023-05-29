@@ -3,7 +3,7 @@ var DictionarySite = {
     WebCaller: new WebCaller(),
     getMeaning: (searchedWord,resultSelector) => {
         let baseUrl = 'https://api.dictionaryapi.dev/api/v2/entries/en/' + searchedWord;
-        DictionarySite.WebCaller.get(baseUrl,  function (result) {
+        DictionarySite.WebCaller.get(baseUrl, function (result) {
             if (result == undefined || result == null || result.title || !result[0]) {
                 DictionarySite.reactOnError(searchedWord);
             }
@@ -14,12 +14,8 @@ var DictionarySite = {
                 DictionarySite.makeWordUi(list, result[0]);
                 resultUi.append(list);
             }
-            
-
-
         }, function (e) {
             //DomExtension.ShowModal("Error in contacting Server", "Try again later " + e);
-            
         });
     },
     makeWordUi: (listElem,resultingItem) => {
