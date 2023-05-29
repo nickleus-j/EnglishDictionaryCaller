@@ -19,3 +19,11 @@ body {
 article{
     font-family: Roboto, Helvetica 'Segoe UI', Times, serif
 }
+.altBg {
+    background: #5170e1;
+    color: #fefaff;
+}
+.txtBg {
+    background: #e1eee4;
+    color: #101101;
+}

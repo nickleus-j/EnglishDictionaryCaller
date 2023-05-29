@@ -11,28 +11,32 @@ var DictionarySite = {
                 let resultUi = document.querySelector(resultSelector);
                 let list = document.createElement("dl");
                 resultUi.innerHTML = "";
-                DictionarySite.makeWordUi(list, result[0]);
+                DictionarySite.makeWordUi(list, result[0], resultUi);
                 resultUi.append(list);
             }
         }, function (e) {
             //DomExtension.ShowModal("Error in contacting Server", "Try again later " + e);
         });
     },
-    makeWordUi: (listElem,resultingItem) => {
+    makeWordUi: (listElem, resultingItem, resultUi) => {
         let dt = document.createElement("dt"), h4 = document.createElement("h4"), dd= document.createElement("dd");
         h4.innerText = resultingItem.word;
-        dt.append(h4);
-        listElem.append(dt);
-        DictionarySite.writeMeanings(resultingItem.meanings, dd);
-        listElem.append(dd);
+        resultUi.append(h4);
+
+        DictionarySite.writeMeanings(resultingItem.meanings, listElem);
+        
     },
-    writeMeanings: (meanings,uiElem) => {
+    writeMeanings: (meanings, listElem) => {
         if (meanings) {
+            
             for (let i = 0; i < meanings.length; i++) {
+                let dt = document.createElement("dt"), dd = document.createElement("dd");
                 let currentMeaning = meanings[i];
-                let h5 = document.createElement("h5");//meanings
-                h5.innerText = "["+(i + 1) + "] Part Of Speech: " + currentMeaning.partOfSpeech;
-                uiElem.append(h5);
+                
+                let strong = document.createElement("b");//meanings
+                strong.innerText = "["+(i + 1) + "] Part Of Speech: " + currentMeaning.partOfSpeech;
+                dt.append(strong);
+                
                 if (currentMeaning.definitions) {
                     let p = document.createElement("p");
                     for (let j = 0; j < currentMeaning.definitions.length; j++) {
@@ -40,10 +44,18 @@ var DictionarySite = {
                         let deftext = document.createElement("p");//meanings
                         deftext.innerText = (j + 1) + ": " + currentDef.definition;
                         p.append(deftext);
+                        let useAltBg = j % 2 > 0;
+                        if (useAltBg) {
+                            deftext.classList.add('altBg');
+                        }
+                        else {
+                            deftext.classList.add('txtBg');
+                        }
                     }
-                    uiElem.append(p);
+                    dd.append(p);
                 }
-                uiElem.append(document.createElement("hr"));
+                listElem.append(dt);
+                listElem.append(dd);
             }
             
         }
