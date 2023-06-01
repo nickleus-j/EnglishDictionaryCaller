@@ -27,3 +27,7 @@ article{
     background: #e1eee4;
     color: #101101;
 }
+dl .altBg, dl .txtBg {
+    padding-left: 15px;
+    padding-top: 3px;
+}

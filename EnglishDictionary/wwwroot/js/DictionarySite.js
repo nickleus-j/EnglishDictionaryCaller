@@ -38,12 +38,11 @@ var DictionarySite = {
                 dt.append(strong);
                 
                 if (currentMeaning.definitions) {
-                    let p = document.createElement("p");
                     for (let j = 0; j < currentMeaning.definitions.length; j++) {
                         let currentDef = currentMeaning.definitions[j];
                         let deftext = document.createElement("p");//meanings
                         deftext.innerText = (j + 1) + ": " + currentDef.definition;
-                        p.append(deftext);
+                        dd.append(deftext);
                         let useAltBg = j % 2 > 0;
                         if (useAltBg) {
                             deftext.classList.add('altBg');
@@ -52,7 +51,7 @@ var DictionarySite = {
                             deftext.classList.add('txtBg');
                         }
                     }
-                    dd.append(p);
+                    
                 }
                 listElem.append(dt);
                 listElem.append(dd);
