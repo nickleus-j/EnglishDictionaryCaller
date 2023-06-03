@@ -7,7 +7,7 @@
 <div class="text-center">
     <h1 class="display-4">Enter a word</h1>
     <h2>
-        <input id="wordBox" placeholder="definition look up" />
+        <input id="wordBox" placeholder="Definition look up" />
         <a id="searchBtn" class="btn btn-primary">Search</a>
     </h2>
    
@@ -21,7 +21,6 @@
     <script>
         window.addEventListener("load", (event) => {
             
-            //document.querySelector(".projection-tbl").classList.add("d-none");
             let btnSearch = document.querySelector("#searchBtn");
             let searchBox = document.querySelector("#wordBox");
             DictionarySite.btnSearch=btnSearch;
@@ -38,24 +37,6 @@
                     btnSearch.click();
                 }
             });
-            function Xsuggest(word) {
-                let webCaller= new WebCaller();
-                webCaller.get('?handler=Suggestion&word=' + word
-                    , function (result) {
-                        let h5 = document.createElement("h5"), suggestionsElem = document.querySelector(".suggestions");
-                        let p = document.createElement("p");
-                        h5.innerText="suggestions";
-                        suggestionsElem.innerHTML="";
-                        suggestionsElem.append(h5);
-                        p.innerText=result;
-                        suggestionsElem.append(p);
-                    },
-                    function (data) {
-                        alert(data);
-                        let suggestionsElem = document.querySelector(".suggestions");
-                        suggestionsElem.innerHTML = "";
-                    });
-            }
         });
     </script>
 }
