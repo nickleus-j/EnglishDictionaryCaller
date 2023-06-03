@@ -1,14 +1,25 @@
 ﻿
 var DictionarySite = {
     WebCaller: new WebCaller(),
+    btnSearch: {},
+    searchBox: {},
+    Resource: {
+        HandlerUrl: '?handler=Suggestion&word=',
+        SuggestionsText: "suggestions",
+        SuggestionsSelector: ".suggestions",
+        LoadingText:"Loading...",
+        baseUrl: 'https://api.dictionaryapi.dev/api/v2/entries/en/'
+    },
     getMeaning: (searchedWord,resultSelector) => {
-        let baseUrl = 'https://api.dictionaryapi.dev/api/v2/entries/en/' + searchedWord;
+        let baseUrl = DictionarySite.Resource.baseUrl + searchedWord;
+        let resultUi = document.querySelector(resultSelector);
+        resultUi.innerHTML = "<h3><marquee>" + DictionarySite.Resource.LoadingText + "</marquee></h3>";
         DictionarySite.WebCaller.get(baseUrl, function (result) {
             if (result == undefined || result == null || result.title || !result[0]) {
                 DictionarySite.reactOnError(searchedWord);
             }
             if (result[0].word) {
-                let resultUi = document.querySelector(resultSelector);
+                
                 let list = document.createElement("dl");
                 resultUi.innerHTML = "";
                 DictionarySite.makeWordUi(list, result[0], resultUi);
@@ -19,7 +30,7 @@ var DictionarySite = {
         });
     },
     makeWordUi: (listElem, resultingItem, resultUi) => {
-        let dt = document.createElement("dt"), h4 = document.createElement("h4"), dd= document.createElement("dd");
+        let h4 = document.createElement("h4");
         h4.innerText = resultingItem.word;
         resultUi.append(h4);
 
@@ -44,12 +55,8 @@ var DictionarySite = {
                         deftext.innerText = (j + 1) + ": " + currentDef.definition;
                         dd.append(deftext);
                         let useAltBg = j % 2 > 0;
-                        if (useAltBg) {
-                            deftext.classList.add('altBg');
-                        }
-                        else {
-                            deftext.classList.add('txtBg');
-                        }
+                        let bgCssClass = useAltBg ? 'altBg' : 'txtBg';
+                        deftext.classList.add(bgCssClass);
                     }
                     
                 }
@@ -58,15 +65,14 @@ var DictionarySite = {
             }
             
         }
-        
     },
     reactOnError: (word)=> {
         let webCaller = DictionarySite.WebCaller;
-        webCaller.get('?handler=Suggestion&word=' + word
+        webCaller.get(DictionarySite.Resource.HandlerUrl + word
             , function (result) {
-                let h5 = document.createElement("h5"), suggestionsElem = document.querySelector(".suggestions");
+                let h5 = document.createElement("h5"), suggestionsElem = document.querySelector(DictionarySite.Resource.SuggestionsSelector);
                 let ul = document.createElement("ul");
-                h5.innerText = "suggestions";
+                h5.innerText = DictionarySite.Resource.SuggestionsText;
                 suggestionsElem.innerHTML = "";
                 suggestionsElem.append(h5);
                 DictionarySite.createSuggestionList(ul,result);
@@ -74,7 +80,7 @@ var DictionarySite = {
             },
             function (data) {
                 alert(data);
-                let suggestionsElem = document.querySelector(".suggestions");
+                let suggestionsElem = document.querySelector(DictionarySite.Resource.SuggestionsSelector);
                 suggestionsElem.innerHTML = "";
             }
         );
@@ -82,7 +88,17 @@ var DictionarySite = {
     createSuggestionList: (listElem,words)=>{
         for (let i = 0; i < words.length; i++) {
             let item = document.createElement("li");
-            item.innerText = words[i];
+            let clickItem = document.createElement("a");
+            clickItem.innerText = words[i];
+            clickItem.addEventListener('click', function (elem) {
+                if (DictionarySite.btnSearch && DictionarySite.searchBox) {
+                    DictionarySite.searchBox.value = elem.target.text;
+                    DictionarySite.btnSearch.click();
+                }
+            });
+            clickItem.classList.add("lavender-btn");
+            clickItem.classList.add("btn");
+            item.append(clickItem);
             listElem.append(item);
         }
     }

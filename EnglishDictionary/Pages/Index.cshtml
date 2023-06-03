@@ -22,8 +22,10 @@
         window.addEventListener("load", (event) => {
             
             //document.querySelector(".projection-tbl").classList.add("d-none");
-            var btnSearch = document.querySelector("#searchBtn");
+            let btnSearch = document.querySelector("#searchBtn");
             let searchBox = document.querySelector("#wordBox");
+            DictionarySite.btnSearch=btnSearch;
+            DictionarySite.searchBox=searchBox;
             btnSearch.addEventListener('click', function () {
                 DictionarySite.getMeaning(searchBox.value, "article");
             });
