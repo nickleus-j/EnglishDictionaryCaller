@@ -26,7 +26,8 @@ var DictionarySite = {
                 resultUi.append(list);
             }
         }, function (e) {
-            //DomExtension.ShowModal("Error in contacting Server", "Try again later " + e);
+            DictionarySite.reactOnError(searchedWord);
+            resultUi.innerHTML = "";
         });
     },
     makeWordUi: (listElem, resultingItem, resultUi) => {
