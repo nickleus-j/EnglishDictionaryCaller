@@ -1,5 +1,4 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-
+﻿
 var DomExtension = {
     MakeElement: function (tagName, text) {
         let elem = document.createElement(tagName);
