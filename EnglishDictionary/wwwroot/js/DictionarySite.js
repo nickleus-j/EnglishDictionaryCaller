@@ -15,7 +15,7 @@ var DictionarySite = {
         let resultUi = document.querySelector(resultSelector);
         resultUi.innerHTML = "<h3><marquee>" + DictionarySite.Resource.LoadingText + "</marquee></h3>";
         DictionarySite.WebCaller.get(baseUrl, function (result) {
-            if (result == undefined || result == null || result.title || !result[0]) {
+            if (result == undefined || result == null || result.title || !result||result.length<1) {
                 DictionarySite.reactOnError(searchedWord);
             }
             if (result[0].word) {
