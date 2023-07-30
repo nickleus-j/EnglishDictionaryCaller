@@ -26,6 +26,9 @@
             DictionarySite.btnSearch=btnSearch;
             DictionarySite.searchBox=searchBox;
             btnSearch.addEventListener('click', function () {
+                if (!searchBox.value){
+                    searchBox.value="blank";
+                }
                 DictionarySite.getMeaning(searchBox.value, "article");
             });
             searchBox.addEventListener("keypress", function (event) {

@@ -21,6 +21,7 @@ namespace EnglishDictionary.Pages
         public IActionResult OnGetSuggestion(string word)
         {
             var dictionary = WordList.CreateFromFiles(@"english.dic");
+            if(String.IsNullOrWhiteSpace(word)) { word = "blank"; }
             var suggestions = dictionary.Suggest(word);
             return new JsonResult(suggestions);
         }
