@@ -17,8 +17,8 @@ jobs:
     - name: Login to DockerHub Registry
       run: echo ${{ secrets.DOCKER_PASS }} | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
     - name: Build the Docker image
-      run: docker build https://github.com/nickleus-j/EnglishDictionaryCaller.git#master
+      run: docker build https://github.com/nickleus-j/EnglishDictionaryCaller.git#master -t current
     - name: Tag the Docker image
-      run: docker tag 903dd59b6430 nickleusj/englishdictionary:latest
+      run: docker tag nickleusj/englishdictionary:current nickleusj/englishdictionary:bild
     - name: Push the Docker image to the registry
-      run: docker push nickleusj/englishdictionary:latest
+      run: docker push nickleusj/englishdictionary:bild
