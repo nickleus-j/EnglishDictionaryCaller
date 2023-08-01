@@ -80,7 +80,6 @@ var DictionarySite = {
                 suggestionsElem.append(ul);
             },
             function (data) {
-                alert(data);
                 let suggestionsElem = document.querySelector(DictionarySite.Resource.SuggestionsSelector);
                 suggestionsElem.innerHTML = "";
             }

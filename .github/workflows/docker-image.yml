@@ -19,6 +19,6 @@ jobs:
     - name: Build the Docker image
       run: docker build https://github.com/nickleus-j/EnglishDictionaryCaller.git#master -t current
     - name: Tag the Docker image
-      run: docker tag current nickleusj/englishdictionary:bild
+      run: docker tag current nickleusj/englishdictionary:latest
     - name: Push the Docker image to the registry
-      run: docker push nickleusj/englishdictionary:bild
+      run: docker push nickleusj/englishdictionary:latest
