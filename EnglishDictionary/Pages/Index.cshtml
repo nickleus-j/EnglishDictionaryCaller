@@ -9,8 +9,9 @@
     <h2>
         <input id="wordBox" placeholder="Definition look up" />
         <a id="searchBtn" class="btn btn-primary">Search</a>
+        <a class="speak-btn btn btn-success">Speak</a>
     </h2>
-   <p>Will return dictionary definition</p>
+   <p class="subtitle">Will return dictionary definition</p>
 </div>
 <div class="row">
     <div class="suggestions col-sm-2"></div>
@@ -23,6 +24,7 @@
             
             let btnSearch = document.querySelector("#searchBtn");
             let searchBox = document.querySelector("#wordBox");
+            let speakBtn = document.querySelector(".speak-btn");
             DictionarySite.btnSearch=btnSearch;
             DictionarySite.searchBox=searchBox;
             btnSearch.addEventListener('click', function () {
@@ -39,6 +41,22 @@
                     // Trigger the button element with a click
                     btnSearch.click();
                 }
+            });
+            speakBtn.addEventListener('click', (event) => {
+                event.preventDefault();
+                if (!searchBox.value) {
+                    searchBox.value = "blank";
+                }
+               
+                if ('speechSynthesis' in window) {
+                     var msg = new SpeechSynthesisUtterance();
+                msg.text = searchBox.value;
+                window.speechSynthesis.speak(msg);
+                } else {
+                    // Speech Synthesis Not Supported 😣
+                    document.querySelector("p.subtitle")("Sorry, your browser doesn't support text to speech!");
+                }
+
             });
         });
     </script>
