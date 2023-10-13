@@ -40,3 +40,6 @@ dl .altBg, dl .txtBg {
     margin: 5px;
     display:inline-block;
 }
+h4:first-letter {
+    text-transform: uppercase;
+}
