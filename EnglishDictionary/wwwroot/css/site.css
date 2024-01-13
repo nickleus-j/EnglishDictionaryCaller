@@ -19,6 +19,9 @@ body {
 article{
     font-family: Roboto, Helvetica 'Segoe UI', Times, serif
 }
+article p{
+    margin-bottom:.5em;
+}
 .altBg {
     background: #5170e1;
     color: #fefaff;
