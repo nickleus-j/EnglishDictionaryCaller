@@ -46,3 +46,7 @@ dl .altBg, dl .txtBg {
 h4:first-letter {
     text-transform: uppercase;
 }
+.search-compo {
+    border: solid whitesmoke;
+    margin: 15px;
+}
