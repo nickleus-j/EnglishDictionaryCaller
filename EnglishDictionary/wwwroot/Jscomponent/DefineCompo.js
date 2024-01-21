@@ -16,38 +16,18 @@
         this.innerHTML = `<p>${this.getAttribute("content")}</p><hr/>`;
     }
     parseJsonEntry(toParse) {
-        let entry = JSON.parse(toParse), htmlToGive = ``;
-        let meanings = entry.meanings;
-        let list = document.createElement("ul");
-        htmlToGive = htmlToGive.concat(`<h4>${entry.word}</h4>`);
-        if (meanings) {
-
-            for (let i = 0; i < meanings.length; i++) {
-                let currentMeaning = meanings[i];
-                if (currentMeaning.definitions) {
-                    for (let j = 0; j < currentMeaning.definitions.length; j++) {
-                        let currentDef = currentMeaning.definitions[j];
-                        let item = document.createElement("li");
-                        item.textContent = currentDef.definition;
-
-                        let useAltBg = j % 2 > 0;
-                        let bgCssClass = useAltBg ? 'altBg' : 'txtBg';
-                        item.classList.add(bgCssClass);
-                        list.append(item);
-                    }
-                }
-            }
-            htmlToGive = htmlToGive.concat(list.innerHTML);
-        }
-        this.innerHTML = htmlToGive;
+        let entry = JSON.parse(toParse);
+        let list = document.createElement("dl");
+        this.innerHTML = "";
+        this.makeWordUi(list, entry, this);
     }
     makeWordUi(listElem, resultingItem, resultUi) {
         let h4 = document.createElement("h4");
         h4.innerText = resultingItem.word;
         resultUi.append(h4);
 
-        DictionarySite.writeMeanings(resultingItem.meanings, listElem);
-
+        this.writeMeanings(resultingItem.meanings, listElem);
+        resultUi.append(listElem);
     }
     writeMeanings(meanings, listElem) {
         if (meanings) {
