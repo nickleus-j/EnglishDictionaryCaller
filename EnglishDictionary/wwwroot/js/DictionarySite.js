@@ -55,6 +55,13 @@ var DictionarySite = {
                         let deftext = document.createElement("p");//meanings
                         deftext.innerText = (j + 1) + ": " + currentDef.definition;
                         dd.append(deftext);
+
+                        //let aDefinition = document.createElement("dis-means");
+                        //aDefinition.ChangeContent(deftext.innerText);
+                        //dd.append(aDefinition);
+                        let htmlmean = `<dis-means content="${deftext.innerText}"></dis-means>`;
+                        dd.insertAdjacentHTML("beforeend", htmlmean); 
+
                         let useAltBg = j % 2 > 0;
                         let bgCssClass = useAltBg ? 'altBg' : 'txtBg';
                         deftext.classList.add(bgCssClass);
@@ -63,6 +70,7 @@ var DictionarySite = {
                 }
                 listElem.append(dt);
                 listElem.append(dd);
+               
             }
             
         }
