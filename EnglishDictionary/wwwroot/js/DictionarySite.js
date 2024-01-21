@@ -19,54 +19,17 @@ var DictionarySite = {
                 DictionarySite.reactOnError(searchedWord);
             }
             if (result[0].word) {
-                
-                let list = document.createElement("dl");
                 resultUi.innerHTML = "";
-                DictionarySite.makeWordUi(list, result[0], resultUi);
-                resultUi.append(list);
+                
+                let htmlmean = `<dis-means content="${result[0].word}" jsonentry='${JSON.stringify(result[0]).replaceAll("'", '`')}'></dis-means>`;
+                resultUi.insertAdjacentHTML("beforeend", htmlmean);
             }
         }, function (e) {
             DictionarySite.reactOnError(searchedWord);
             resultUi.innerHTML = "";
         });
     },
-    makeWordUi: (listElem, resultingItem, resultUi) => {
-        let h4 = document.createElement("h4");
-        h4.innerText = resultingItem.word;
-        resultUi.append(h4);
-
-        DictionarySite.writeMeanings(resultingItem.meanings, listElem);
-        
-    },
-    writeMeanings: (meanings, listElem) => {
-        if (meanings) {
-            
-            for (let i = 0; i < meanings.length; i++) {
-                let dt = document.createElement("dt"), dd = document.createElement("dd");
-                let currentMeaning = meanings[i];
-                
-                let strong = document.createElement("b");//meanings
-                strong.innerText = "["+(i + 1) + "] Part Of Speech: " + currentMeaning.partOfSpeech;
-                dt.append(strong);
-                
-                if (currentMeaning.definitions) {
-                    for (let j = 0; j < currentMeaning.definitions.length; j++) {
-                        let currentDef = currentMeaning.definitions[j];
-                        let deftext = document.createElement("p");//meanings
-                        deftext.innerText = (j + 1) + ": " + currentDef.definition;
-                        dd.append(deftext);
-                        let useAltBg = j % 2 > 0;
-                        let bgCssClass = useAltBg ? 'altBg' : 'txtBg';
-                        deftext.classList.add(bgCssClass);
-                    }
-                    
-                }
-                listElem.append(dt);
-                listElem.append(dd);
-            }
-            
-        }
-    },
+    
     reactOnError: (word)=> {
         let webCaller = DictionarySite.WebCaller;
         webCaller.get(DictionarySite.Resource.HandlerUrl + word
