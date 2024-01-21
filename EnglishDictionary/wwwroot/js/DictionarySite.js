@@ -19,11 +19,12 @@ var DictionarySite = {
                 DictionarySite.reactOnError(searchedWord);
             }
             if (result[0].word) {
-                
-                let list = document.createElement("dl");
                 resultUi.innerHTML = "";
+                let list = document.createElement("dl");
                 DictionarySite.makeWordUi(list, result[0], resultUi);
                 resultUi.append(list);
+                let htmlmean = `<dis-means content="${result[0].word}" jsonentry='${JSON.stringify(result[0]).replaceAll("'", '`')}'></dis-means>`;
+                resultUi.insertAdjacentHTML("beforeend", htmlmean);
             }
         }, function (e) {
             DictionarySite.reactOnError(searchedWord);
@@ -55,13 +56,6 @@ var DictionarySite = {
                         let deftext = document.createElement("p");//meanings
                         deftext.innerText = (j + 1) + ": " + currentDef.definition;
                         dd.append(deftext);
-
-                        //let aDefinition = document.createElement("dis-means");
-                        //aDefinition.ChangeContent(deftext.innerText);
-                        //dd.append(aDefinition);
-                        let htmlmean = `<dis-means content="${deftext.innerText}"></dis-means>`;
-                        dd.insertAdjacentHTML("beforeend", htmlmean); 
-
                         let useAltBg = j % 2 > 0;
                         let bgCssClass = useAltBg ? 'altBg' : 'txtBg';
                         deftext.classList.add(bgCssClass);
