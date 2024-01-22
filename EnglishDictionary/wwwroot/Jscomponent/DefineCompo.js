@@ -45,10 +45,15 @@
                         let currentDef = currentMeaning.definitions[j];
                         let deftext = document.createElement("p");//meanings
                         deftext.innerText = (j + 1) + ": " + currentDef.definition;
-                        dd.append(deftext);
                         let useAltBg = j % 2 > 0;
                         let bgCssClass = useAltBg ? 'altBg' : 'txtBg';
                         deftext.classList.add(bgCssClass);
+                        dd.append(deftext);
+                        if (currentDef.example) {
+                            let sentence = document.createElement("pre");
+                            sentence.innerText = currentDef.example;
+                            dd.append(sentence);
+                        }
                     }
 
                 }
