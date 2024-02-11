@@ -32,7 +32,7 @@
             window.speechSynthesis.speak(msg);
         } else {
             // Speech Synthesis Not Supported 😣
-            document.querySelector("p.subtitle")("Sorry, your browser doesn't support text to speech!");
+            document.querySelector("p.subtitle")("Sorry, your browser doesn't support text to speech :(");
         }
 
     });
