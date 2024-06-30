@@ -5,7 +5,7 @@ var DictionarySite = {
     searchBox: {},
     Resource: {
         HandlerUrl: '?handler=Suggestion&word=',
-        SuggestionsText: "suggestions",
+        SuggestionsText: "Suggestions",
         SuggestionsSelector: ".suggestions",
         LoadingText:"Loading...",
         baseUrl: 'https://api.dictionaryapi.dev/api/v2/entries/en/'
