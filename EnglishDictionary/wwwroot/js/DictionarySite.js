@@ -20,13 +20,14 @@ var DictionarySite = {
             }
             if (result[0].word) {
                 resultUi.innerHTML = "";
-                
+                DictionarySite.emptySuggestionList();
                 let htmlmean = `<dis-means content="${result[0].word}" jsonentry='${JSON.stringify(result[0]).replaceAll("'", '`')}'></dis-means>`;
                 resultUi.insertAdjacentHTML("beforeend", htmlmean);
             }
         }, function (e) {
             DictionarySite.reactOnError(searchedWord);
             resultUi.innerHTML = "";
+            DictionarySite.emptySuggestionList();
         });
     },
     
@@ -43,8 +44,7 @@ var DictionarySite = {
                 suggestionsElem.append(ul);
             },
             function (data) {
-                let suggestionsElem = document.querySelector(DictionarySite.Resource.SuggestionsSelector);
-                suggestionsElem.innerHTML = "";
+                DictionarySite.emptySuggestionList();
             }
         );
     },
@@ -64,5 +64,9 @@ var DictionarySite = {
             item.append(clickItem);
             listElem.append(item);
         }
+    },
+    emptySuggestionList: () => {
+        let suggestionsElem = document.querySelector(DictionarySite.Resource.SuggestionsSelector);
+        suggestionsElem.innerHTML = "";
     }
 }
