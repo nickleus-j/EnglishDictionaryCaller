@@ -14,7 +14,7 @@ html {
 }
 
 body {
-  margin-bottom: 20px;
+  margin-bottom: 2em;
 }
 article{
     font-family: Roboto, Helvetica 'Segoe UI', Times, serif
@@ -52,7 +52,7 @@ h4:first-letter {
 }
 dis-means dl {
     box-shadow: #7a7e79 8px 6px;
-    border: solid #f5faf5;
+    border: solid #e1eae3;
 }
 dis-means dl dd pre{
     margin-left:1rem;

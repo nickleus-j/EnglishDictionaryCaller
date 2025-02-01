@@ -77,10 +77,6 @@
 Definition.prototype.ChangeContent = function (txt) {
     this.TextContent = txt;
     // Render HTML
-    this.innerHTML =
-        `<p>
-					${txt}
-				</p>
-			<hr/>`;
+    this.changePlainly();
 }
 customElements.define("dis-means", Definition);
