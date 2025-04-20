@@ -30,6 +30,9 @@ article p{
     background: #e1eee4;
     color: #101101;
 }
+dt {
+    border-top:solid 2px silver;
+}
 dl .altBg, dl .txtBg {
     padding-left: 15px;
     padding-top: 3px;
