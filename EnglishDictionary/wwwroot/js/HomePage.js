@@ -9,6 +9,7 @@
         if (!searchBox.value) {
             searchBox.value = "blank";
         }
+        DomExtension.Notify(document.querySelector(".noticePanel"), "Search " + searchBox.value); 
         DictionarySite.getMeaning(searchBox.value, "article");
     });
     searchBox.addEventListener("keypress", function (event) {

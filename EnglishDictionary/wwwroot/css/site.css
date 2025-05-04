@@ -60,3 +60,28 @@ dis-means dl {
 dis-means dl dd pre{
     margin-left:1rem;
 }
+.noticePanel {
+    position: fixed;
+    top: 20px;
+    right: 20%;
+}
+
+.notification {
+    transform: translateX(-50%);
+    background-color: #f0f0f0;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+    .notification .progress-bar {
+        background-color: #4CAF50;
+        height: 5px;
+        width: 100%;
+        border-radius: 3px;
+        transition: width 4s linear;
+    }
+    .notification.hidden{
+        display:none;
+    }
