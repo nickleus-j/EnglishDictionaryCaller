@@ -13,7 +13,7 @@ var DictionarySite = {
     getMeaning: (searchedWord,resultSelector) => {
         let baseUrl = DictionarySite.Resource.baseUrl + searchedWord;
         let resultUi = document.querySelector(resultSelector);
-        resultUi.innerHTML = "<h3><marquee>" + DictionarySite.Resource.LoadingText + "</marquee></h3>";
+        DomExtension.Notify(document.querySelector(".noticePanel"), DictionarySite.Resource.LoadingText); 
         DictionarySite.WebCaller.get(baseUrl, function (result) {
             if (result == undefined || result == null || result.title || !result||result.length<1) {
                 DictionarySite.reactOnError(searchedWord);
