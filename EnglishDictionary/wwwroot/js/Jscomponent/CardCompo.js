@@ -55,14 +55,17 @@ class Card extends HTMLElement {
     const style = document.createElement("style");
     style.textContent = `
       :host {
-        display: block;
+        display: inline-block;
         background: #eaeaea;
         border-radius: 10px;
         border: 1px solid black;
         max-width: 300px;
         color: #333;
       }
-
+      .card:host {
+          display: inline-block;
+          margin:.5rem
+      }
       .card__content {
         padding: 1rem;
       }

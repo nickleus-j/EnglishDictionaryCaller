@@ -23,6 +23,8 @@ var DictionarySite = {
                 DictionarySite.emptySuggestionList();
                 let htmlmean = `<dis-means content="${result[0].word}" jsonentry='${JSON.stringify(result[0]).replaceAll("'", '`')}'></dis-means>`;
                 resultUi.insertAdjacentHTML("beforeend", htmlmean);
+                let cardItem = `<component-card data-title="${result[0].word}" data-description="${baseUrl}"></component-card>`;
+                document.querySelector(".cards").insertAdjacentHTML("beforeend", cardItem);
             }
         }, function (e) {
             DictionarySite.reactOnError(searchedWord);
