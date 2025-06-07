@@ -9,6 +9,7 @@
         if (!searchBox.value) {
             searchBox.value = "blank";
         }
+        pingViaAudio();
         DictionarySite.getMeaning(searchBox.value, "article");
     });
     searchBox.addEventListener("keypress", function (event) {
@@ -25,7 +26,7 @@
         if (!searchBox.value) {
             searchBox.value = "blank";
         }
-
+        
         if ('speechSynthesis' in window) {
             var msg = new SpeechSynthesisUtterance();
             msg.text = searchBox.value;
@@ -37,3 +38,22 @@
 
     });
 });
+var audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+function pingViaAudio() {
+    var oscillator = audioContext.createOscillator();
+    var gainNode = audioContext.createGain();
+
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+
+    oscillator.type = 'sine'; // Or 'triangle', 'square', 'sawtooth'
+    oscillator.frequency.setValueAtTime(660, audioContext.currentTime); // Frequency in Hz
+
+    // Create a quick decay for a "ping" effect
+    gainNode.gain.setValueAtTime(0.5, audioContext.currentTime); // Initial volume
+    gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.3); // Decay over 0.3 seconds
+
+    oscillator.start(audioContext.currentTime);
+    oscillator.stop(audioContext.currentTime + 0.3); // Stop after the decay
+}
