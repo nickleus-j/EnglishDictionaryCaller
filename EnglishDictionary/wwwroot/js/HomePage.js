@@ -9,7 +9,7 @@
         if (!searchBox.value) {
             searchBox.value = "blank";
         }
-        pingViaAudio();
+        pingViaAudio(670);
         DictionarySite.getMeaning(searchBox.value, "article");
     });
     searchBox.addEventListener("keypress", function (event) {
@@ -40,7 +40,7 @@
 });
 var audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
-function pingViaAudio() {
+function pingViaAudio(freq) {
     var oscillator = audioContext.createOscillator();
     var gainNode = audioContext.createGain();
 
@@ -48,7 +48,7 @@ function pingViaAudio() {
     gainNode.connect(audioContext.destination);
 
     oscillator.type = 'sine'; // Or 'triangle', 'square', 'sawtooth'
-    oscillator.frequency.setValueAtTime(660, audioContext.currentTime); // Frequency in Hz
+    oscillator.frequency.setValueAtTime(freq, audioContext.currentTime); // Frequency in Hz
 
     // Create a quick decay for a "ping" effect
     gainNode.gain.setValueAtTime(0.5, audioContext.currentTime); // Initial volume
