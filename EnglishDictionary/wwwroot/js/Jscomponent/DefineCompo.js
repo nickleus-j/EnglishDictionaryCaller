@@ -7,7 +7,7 @@
         // Render HTML
         this.innerHTML =
             `<p>
-				****
+				*****
 			</p>
 		<hr/>`;
 

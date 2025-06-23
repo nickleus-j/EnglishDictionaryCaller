@@ -71,11 +71,13 @@ class Card extends HTMLElement {
       }
 
       .card__title {
-        color: #333;
+        color: #222;
         margin-top: 0;
         line-height: 1.1;
       }
-
+      div.card__description{
+          border-top: solid 1px #777;
+      }
       img {
         width: 100%;
         display: block;
@@ -83,7 +85,7 @@ class Card extends HTMLElement {
       }
 
       .card__cta {
-      margin-top: 1.5rem;
+        margin-top: 1.5rem;
       }
 
       .card__cta a {
