@@ -22,9 +22,11 @@
         this.makeWordUi(list, entry, this);
     }
     makeWordUi(listElem, resultingItem, resultUi) {
-        let h4 = document.createElement("h4");
+        let h4 = document.createElement("h4"), phonetics = document.createElement("span");
         h4.innerText = resultingItem.word;
+        phonetics.innerText = resultingItem.phonetic;
         resultUi.append(h4);
+        resultUi.append(phonetics);
 
         this.writeMeanings(resultingItem.meanings, listElem);
         resultUi.append(listElem);
