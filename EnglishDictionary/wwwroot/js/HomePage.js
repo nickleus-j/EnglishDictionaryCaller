@@ -9,7 +9,7 @@
         if (!searchBox.value) {
             searchBox.value = "blank";
         }
-        pingViaAudio(670);
+        pingViaAudio(650);
         DictionarySite.getMeaning(searchBox.value, "article");
     });
     searchBox.addEventListener("keypress", function (event) {
