@@ -23,3 +23,4 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
+app.MapGet("/", () => "It works!");
