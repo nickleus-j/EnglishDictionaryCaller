@@ -57,9 +57,11 @@ dis-means dl {
     box-shadow: #7a7e79 8px 6px;
     border: solid #e1eae3;
 }
-dis-means dl dd pre{
-    margin-left:1rem;
-}
+    dis-means dl dd pre {
+        margin-left: 1rem;
+        font-family: "corbel","Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+    }
 .noticePanel {
     position: fixed;
     top: 20px;
@@ -74,6 +76,7 @@ dis-means dl dd pre{
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     opacity: 1;
     transition: opacity 1s ease-in-out;
+    font-family: "Lucida Console","IBM Plex Serif",'Segoe UI',  sans-serif
 }
     .notification .progress-bar {
         background-color: #4CAF50;
@@ -89,3 +92,40 @@ div.cards .card{
     display:inline-block;
     margin: 1rem;
 }
+.card:host {
+    display: inline-block;
+    margin: .5rem
+}
+
+.card__content {
+    padding: 1rem;
+}
+
+.card__title {
+    color: #222;
+    margin-top: 0;
+    line-height: 1.1;
+}
+
+div.card__description {
+    border-top: solid 1px #777;
+}
+
+img {
+    width: 100%;
+    display: block;
+    border-radius: 10px 10px 0 0;
+}
+
+.card__cta {
+    margin-top: 1.5rem;
+}
+
+    .card__cta a {
+        color: #eaeaea;
+        display: block;
+        background-color: #333;
+        padding: 0.25rem 1rem;
+        border-radius: 5px;
+        text-align: center;
+    }

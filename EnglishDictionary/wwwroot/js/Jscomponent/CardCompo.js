@@ -62,40 +62,7 @@ class Card extends HTMLElement {
         max-width: 300px;
         color: #333;
       }
-      .card:host {
-          display: inline-block;
-          margin:.5rem
-      }
-      .card__content {
-        padding: 1rem;
-      }
-
-      .card__title {
-        color: #222;
-        margin-top: 0;
-        line-height: 1.1;
-      }
-      div.card__description{
-          border-top: solid 1px #777;
-      }
-      img {
-        width: 100%;
-        display: block;
-        border-radius: 10px 10px 0 0;
-      }
-
-      .card__cta {
-        margin-top: 1.5rem;
-      }
-
-      .card__cta a {
-        color: #eaeaea;
-        display: block;
-        background-color: #333;
-        padding: 0.25rem 1rem;
-        border-radius: 5px;
-        text-align: center;
-      }
+      
     `;
 
     // Attach the created elements to the shadow dom
