@@ -91,6 +91,7 @@ dis-means dl {
 div.cards .card{
     display:inline-block;
     margin: 1rem;
+    padding: 0 0.5rem;
 }
 .card:host {
     display: inline-block;

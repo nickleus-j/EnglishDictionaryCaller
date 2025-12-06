@@ -14,10 +14,7 @@ namespace EnglishDictionary.Pages
             _logger = logger;
         }
 
-        public void OnGet()
-        {
-
-        }
+        public void OnGet(){}
         public IActionResult OnGetSuggestion(string word)
         {
             var dictionary = WordList.CreateFromFiles(@"english.dic");
